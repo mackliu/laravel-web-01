@@ -15,7 +15,7 @@ class CreateMvimsTable extends Migration
     {
         Schema::create('mvims', function (Blueprint $table) {
             $table->id();
-            $table->string('text',128)->nullable();
+            $table->text('text')->nullable();
             $table->string('img',128)->nullable();
             $table->tinyInteger('sh');
         });
