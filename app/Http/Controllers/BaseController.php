@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 use App\Model\Title;
 use App\Model\Total;
 use App\Model\Bottom;
-class HomeController extends BaseController
+
+class BaseController extends Controller
 {
+    protected $view=[];
+
     /**
      * Create a new controller instance.
      *
@@ -15,8 +18,10 @@ class HomeController extends BaseController
      */
     public function __construct()
     {
-        parent::__construct();
-        //$this->middleware('auth');
+        $this->view['title']=Title::where('sh',1)->first();
+        $this->view['bottom']=Bottom::first()->bottom;
+        $this->view['total']=Total::first()->total;
+
     }
 
     /**
@@ -24,9 +29,6 @@ class HomeController extends BaseController
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('main',$this->view);
-    }
+
 
 }

@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\Title;
-use App\Model\Total;
-use App\Model\Bottom;
-class HomeController extends BaseController
+
+class AdminController extends BaseController
 {
     /**
      * Create a new controller instance.
@@ -16,7 +14,7 @@ class HomeController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -26,7 +24,7 @@ class HomeController extends BaseController
      */
     public function index()
     {
-        return view('main',$this->view);
+        return view('admin_title',$this->view);
     }
 
 }

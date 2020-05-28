@@ -7,7 +7,7 @@
         <div class="text-center border-bottom p-2 ">主選單區</div>
     </div>
     <div class="w-100 p-1 d-flex justify-content-center align-items-center border" style="height:95px">
-        進站總人數：
+        進站總人數：{{ $total }}
     </div>
 
 </div>

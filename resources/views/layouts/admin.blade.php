@@ -4,7 +4,7 @@
 
 <div class="col-3 p-0">
     <div class="w-100 border mb-1 px-2" style="height:443px">
-        <div class="text-center border-bottom p-2 mb-2 ">後台管理選單</div>
+        <div class="text-center border-bottom p-3 mb-2 ">後台管理選單</div>
             <ul class="list-group">
                 <li class="list-group-item list-group-item-action p-2 cursor-pointer">網站標題管理 </li>
                 <li class="list-group-item list-group-item-action p-2 cursor-pointer">動態文字廣告管理 </li>
