@@ -33,7 +33,9 @@ class AdminController extends BaseController
      */
     public function index()
     {
-        return view('backend.admin_title',$this->view);
+        $this->view['header']="網站標題管理";
+        $this->title();
+        return view('backend.admin_item',$this->view);
     }
 
     public function list($item)

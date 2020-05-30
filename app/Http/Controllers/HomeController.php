@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Model\Title;
 use App\Model\Total;
 use App\Model\Bottom;
+use App\Model\Ad;
 class HomeController extends BaseController
 {
     /**
@@ -26,6 +27,8 @@ class HomeController extends BaseController
      */
     public function index()
     {
+        $marquee=Ad::where("sh",1)->get()->pluck('text')->all();
+        $this->view['marquee']=implode('　　',$marquee);
         return view('frontend.main',$this->view);
     }
 

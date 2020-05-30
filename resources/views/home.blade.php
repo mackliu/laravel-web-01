@@ -13,12 +13,16 @@
 </div>
 <div class="col-6 px-1">
     <div class="border">
-    <marquee scrolldelay="120" direction="left" class="w-100" style="height:30px;"></marquee>
+    <marquee scrolldelay="120" direction="left" class="w-100" style="height:30px;">
+    @isset($marquee)
+     {{$marquee}}
+    @endisset
+    </marquee>
     @yield('main')
     </div>
 </div>
 <div class="col-3 p-0">
-<button class="btn btn-secondary w-100 mb-1 p-3">管理登入</button>
+<a href="/admin" class="btn btn-secondary w-100 mb-1 p-3">管理登入</a>
 <div class="w-100 border px-2" style="height:480px">
     <div class="text-center border-bottom p-2">校園映象區</div>
     <div class="text-center" style="font-size:28px;">&#9650;</div>
