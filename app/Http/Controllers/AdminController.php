@@ -24,7 +24,8 @@ class AdminController extends BaseController
      */
     public function index()
     {
-        return view('admin_title',$this->view);
+        return view('backend.admin_title',$this->view);
     }
+
 
 }

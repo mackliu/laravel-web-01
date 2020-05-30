@@ -26,7 +26,7 @@ class HomeController extends BaseController
      */
     public function index()
     {
-        return view('main',$this->view);
+        return view('frontend.main',$this->view);
     }
 
 }

@@ -186,8 +186,8 @@ class initial extends Seeder
         DB::table('bottoms')->insert(["bottom"=>"2020-08-27 頁尾版權"]);
         DB::table('totals')->insert(["total"=>0]);
         
-        DB::table('admins')->insert(["acc"=>'admin','pw'=>'1234']);
-        DB::table('admins')->insert(["acc"=>'test','pw'=>'5678']);
+        DB::table('users')->insert(["name"=>'admin','password'=> Hash::make('1234')]);
+        DB::table('users')->insert(["name"=>'test','password'=> Hash::make('5678')]);
 
         DB::table('menus')->insert(["text"=>'登理登入','href'=>'/admin','parent'=>0,'sh'=>1]);
         DB::table('menus')->insert(["text"=>'網站首頁','href'=>'/','parent'=>0,'sh'=>1]);
