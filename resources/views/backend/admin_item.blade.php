@@ -16,9 +16,28 @@
                                     </form>
     </div>
 </div>
-<div class="border my-1" style="height:480px">
-    <div class="border-bottom py-3 text-center font-weight-bolder"> 網站標題管理</div>
+<div class="border my-1" style="height:480px;overflow:auto">
+    <div class="border-bottom py-3 text-center font-weight-bolder">{{$header}}</div>
+<table class="table table-bordered mt-2 text-center">
+<tr>
+@foreach($column as $col)
+    <td class='p-1'>{{$col}}</td>
+@endforeach
+</tr>
+@foreach($list as $row)
+<tr>
+    @foreach($row as $r)
+    <td class='p-1'>{!! $r !!}</td>
+    @endforeach
+</tr>
+@endforeach
+</table>
 
+<div class="d-flex justify-content-center">
+    @isset($page)
+    {{$page->links()}}
+    @endisset
 </div>
 
+</div>
 @endsection

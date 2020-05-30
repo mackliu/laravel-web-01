@@ -20,14 +20,6 @@ Route::get('/admin','AdminController@index')->name('admin');
 
 
 //backend
-Route::get('/backend/title','AdminController@title');
-Route::get('/backend/ad','AdminController@ad');
-Route::get('/backend/mvim','AdminController@mvim');
-Route::get('/backend/image','AdminController@image');
-Route::get('/backend/total','AdminController@total');
-Route::get('/backend/bottom','AdminController@bottom');
-Route::get('/backend/news','AdminController@news');
-Route::get('/backend/admin','AdminController@admin');
-Route::get('/backend/menu','AdminController@menu');
+Route::get('/backend/{item}','AdminController@list');
 
 
