@@ -27,6 +27,7 @@
         @yield('main')
     </div>
 </div>
+
 @endsection
 
 <script>
@@ -69,6 +70,12 @@ $(".text").on("change",function(){
     })
 })
 
+$("#addRow").on("click",function(){
+    $.get(`/backend/modal/${table}`,function(modal){
+        $("#modalBox").html(modal)
+        $("#addModal").modal("show");
+    })
+})
 })
 </script>
 

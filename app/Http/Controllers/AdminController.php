@@ -148,6 +148,41 @@ class AdminController extends BaseController
 
     }
 
+    //新增資料Modal
+    public function showModal($table){
+        switch($table){
+            case "title":
+                $modal['title']="新增標題區圖片";
+                return view("modal.title",$modal);
+            break;
+            case "ad":
+                $modal['title']="新增動態文字廣告";
+                return view("modal.ad",$modal);
+            break;
+            case "mvim":
+                $modal['title']="新增動畫圖片";
+                return view("modal.mvim",$modal);
+            break;
+            case "image":
+                $modal['title']="新增校園映像圖片";
+                return view("modal.image",$modal);
+            break;
+            case "news":
+                $modal['title']="新增最新消息資料";
+                return view("modal.news",$modal);
+            break;
+            case "user":
+                $modal['title']="新增管理者";
+                return view("modal.user",$modal);
+            break;
+            case "menu":
+                $modal['title']="新增主選單";
+                return view("modal.menu",$modal);
+            break;
+        }
+    }
+
+    //各功能列表
     private function title(){
         $this->view['column']=['網站標題','替代文字','顯示','刪除',''];
         $rows=Title::all();

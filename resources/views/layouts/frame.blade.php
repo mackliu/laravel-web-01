@@ -30,5 +30,6 @@
 
         <footer class="bg-warning"><div class="text-center">{{$bottom}}</div></footer>
     </div>
+    <div id="modalBox"></div>
 </body>
 </html>

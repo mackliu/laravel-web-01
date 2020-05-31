@@ -1,7 +1,9 @@
 .container{
     max-width:1024px;
 }
-
+input,button,select,textarea{
+    font-size:14px;
+}
 header{
     width:100%;
     height:100px;
