@@ -22,5 +22,8 @@ Route::get('/login','HomeController@login')->name('login');
 
 //backend
 Route::get('/backend/{item}','AdminController@list');
+Route::post('/backend/show/{item}','AdminController@showRow');
+Route::post('/backend/del/{item}','AdminController@delRow');
+Route::post('/backend/text/{item}','AdminController@updateCol');
 
 
