@@ -41,15 +41,36 @@ class HomeController extends BaseController
         return view('frontend.login',$this->view);
     }
 
+    public function news()
+    {
+        $this->homeElement();
+        $news=News::paginate(5);
+        $this->view['news']=$news;
+        $this->view['page']=$news->links();
+        return view("frontend.news",$this->view);
+
+    }
     private function homeElement()
     {
         $menu=Menu::where([['sh',1],['parent',0]])->get();
         foreach($menu as $key => $mu){
             $menu[$key]['sub']=Menu::where('parent',$mu->id)->get();
         }
-
+        $image=Image::where('sh',1)->get();
+        $mvim=Mvim::where('sh',1)->get();
         $marquee=Ad::where("sh",1)->get()->pluck('text')->all();
+        if(News::where('sh',1)->get()->count()>5){
+
+            $news=News::where('sh',1)->limit(5)->get();
+            $this->view['news']=$news;
+            $this->view['more']=true;
+        }else{
+            $news=News::where('sh',1)->get();
+            $this->view['news']=$news;
+        }
         $this->view['marquee']=implode('　　',$marquee);
         $this->view['menu']=$menu;
+        $this->view['image']=$image;
+        $this->view['mvim']=$mvim;
     }
 }
