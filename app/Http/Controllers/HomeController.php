@@ -46,7 +46,6 @@ class HomeController extends BaseController
         $this->homeElement();
         $news=News::paginate(5);
         $this->view['news']=$news;
-        $this->view['page']=$news->links();
         return view("frontend.news",$this->view);
 
     }

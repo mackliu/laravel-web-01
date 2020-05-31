@@ -13,9 +13,9 @@
         @endforeach
     </div>
     <div class="d-flex justify-content-center mt-3">
-    @isset($page)
+
     {{$news->links()}}
-    @endisset
+
     </div>
 </div>
 
