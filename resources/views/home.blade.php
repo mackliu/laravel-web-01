@@ -5,6 +5,20 @@
 <div class="col-3 p-0">
     <div class="w-100 border mb-1 px-2" style="height:443px">
         <div class="text-center border-bottom p-2 ">主選單區</div>
+        <div class="list-group mt-2">
+            @foreach($menu as $mu)
+                <div class="mu text-center position-relative">
+                    <a href="{{$mu->href}}" class="list-group-item ">{{$mu->text}}</a>
+                    @isset($mu['sub'])
+                    <div class="sub position-absolute w-75" style='left:150px;top:30px;display:none'>
+                        @foreach($mu['sub'] as $sub)
+                        <a href="{{$sub->href}}" class="list-group-item bg-success">{{$sub->text}}</a>
+                        @endforeach
+                    </div>
+                    @endisset
+                </div>
+            @endforeach
+        </div>
     </div>
     <div class="w-100 p-1 d-flex justify-content-center align-items-center border" style="height:95px">
         進站總人數：{{ $total }}
@@ -31,3 +45,17 @@
 </div>
 </div>
 @endsection
+<script>
+
+
+window.addEventListener("load",function(){
+   $(".mu").hover(
+       function(){
+            $(this).children(".sub").show()
+        },
+        function(){
+            $(this).children(".sub").hide()
+        }
+    ) 
+})
+</script>

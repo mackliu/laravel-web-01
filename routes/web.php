@@ -17,6 +17,7 @@ Auth::routes();
 Route::get('/','HomeController@index')->name('home');
 Route::get('/news','HomeController@news');
 Route::get('/admin','AdminController@index')->name('admin');
+Route::get('/login','HomeController@login')->name('login');
 
 
 //backend
