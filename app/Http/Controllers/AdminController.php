@@ -35,6 +35,7 @@ class AdminController extends BaseController
     public function index()
     {
         $this->view['header']="網站標題管理";
+        $this->view['new']="新增網站標題圖片";
         $this->view['table']='title';
         $this->title();
         return view('backend.admin_item',$this->view);
@@ -333,4 +334,18 @@ class AdminController extends BaseController
         return $model;
     }
 
+    public function addRow(Request $request,$table){
+        $model=$this->model($table);
+        if($request->file('img')->isValid()){
+            $filename=$request->file('img')->getClientOriginalName();
+            $path=$request->img->storeAs('img',$filename,'img');
+        }
+        $row=new $model;
+        $row->text=$request->input('text');
+        $row->sh=0;
+        $row->img=$filename;
+        $row->save();
+        
+        return redirect('/backend/title');
+    }
 }
