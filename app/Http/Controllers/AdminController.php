@@ -16,6 +16,65 @@ use App\Model\Menu;
 
 class AdminController extends BaseController
 {
+
+    /**
+     * 設定後台各功能會使用到的字串
+     * 
+     */
+
+    private $str=[
+        'title'=>[
+            'header'=>'網站標題管理',
+            'new'=>"新增網站標題圖片",
+            'update-header'=>'更新標題區圖片',
+            'table'=>'title',
+        ],
+        'ad'=>[
+            'header'=>'動態文字廣告管理',
+            'new'=>"新增動態文字廣告",
+            'table'=>'ad',
+        ],
+        'mvim'=>[
+            'header'=>'動畫圖片管理',
+            'new'=>"新增動畫圖片",
+            'update-header'=>'更新動畫圖片',
+            'table'=>'mvim',
+        ],
+        'image'=>[
+            'header'=>'校園映像資料管理',
+            'new'=>"新增校園映像圖片",
+            'update-header'=>'更新校園映像圖片',
+            'table'=>'image',
+        ],
+        'total'=>[
+            'header'=>'進站總人數管理',
+            'table'=>'total',
+            'new'=>''
+        ],
+        'bottom'=>[
+            'header'=>'頁尾版權資料管理',
+            'table'=>'bottom',
+            'new'=>''
+        ],
+        'news'=>[
+            'header'=>'最新消息資料管理',
+            'new'=>"新增最新消息資料",
+            'table'=>'news',
+        ],
+        'user'=>[
+            'header'=>'管理者帳號管理',
+            'new'=>"新增管理者帳號",
+            'table'=>'user',
+        ],
+        'menu'=>[
+            'header'=>'選單管理',
+            'new'=>"新增主選單",
+            'update-header'=>'編輯次選單',
+            'table'=>'menu',
+        ],
+    ];
+
+
     /**
      * Create a new controller instance.
      *
@@ -34,69 +93,20 @@ class AdminController extends BaseController
      */
     public function index()
     {
-        $this->view['header']="網站標題管理";
-        $this->view['new']="新增網站標題圖片";
-        $this->view['table']='title';
+        $this->view['header']=$this->str['title']['header'];
+        $this->view['new']=$this->str['title']['new'];
+        $this->view['table']=$this->str['title']['table'];
         $this->title();
         return view('backend.admin_item',$this->view);
     }
 
     public function list($item)
     {
-        switch($item){
-            case "title":
-                $this->view['header']="網站標題管理";
-                $this->view['new']="新增網站標題圖片";
-                $this->view['table']='title';
-                $this->title();
-            break;
-            case "ad":
-                $this->view['header']="動態文字廣告管理";
-                $this->view['new']="新增動態文字廣告";
-                $this->view['table']='ad';
-                $this->ad();
-            break;
-            case "mvim":
-                $this->view['header']="動畫圖片管理";
-                $this->view['new']="新增動畫圖片";
-                $this->view['table']='mvim';
-                $this->mvim();
-            break;
-            case "image":
-                $this->view['header']="校園映像資料管理";
-                $this->view['new']="新增校園映像圖片";
-                $this->view['table']='image';
-                $this->image();
-            break;
-            case "total":
-                $this->view['header']="進站總人數管理";
-                $this->view['table']='total';
-                $this->total();
-            break;
-            case "bottom":
-                $this->view['header']="頁尾版權資料管理";
-                $this->view['table']='bottom';
-                $this->bottom();
-            break;
-            case "news":
-                $this->view['header']="最新消息資料管理";
-                $this->view['new']="新增最新消息資料";
-                $this->view['table']='news';
-                $this->news();
-            break;
-            case "user":
-                $this->view['header']="管理者帳號管理";
-                $this->view['new']="新增管理者帳號";
-                $this->view['table']='user';
-                $this->user();
-            break;
-            case "menu":
-                $this->view['header']="選單管理";
-                $this->view['new']="新增主選單";
-                $this->view['table']='menu';
-                $this->menu();
-            break;
-        }
+        $this->view['header']=$this->str[$item]['header'];
+        $this->view['new']=$this->str[$item]['new'];
+        $this->view['table']=$this->str[$item]['table'];
+        $this->$item();
+        
         return view('backend.admin_item',$this->view);
 
     }
@@ -151,36 +161,8 @@ class AdminController extends BaseController
 
     //新增資料Modal
     public function showModal($table){
-        switch($table){
-            case "title":
-                $modal['title']="新增標題區圖片";
-                return view("modal.title",$modal);
-            break;
-            case "ad":
-                $modal['title']="新增動態文字廣告";
-                return view("modal.ad",$modal);
-            break;
-            case "mvim":
-                $modal['title']="新增動畫圖片";
-                return view("modal.mvim",$modal);
-            break;
-            case "image":
-                $modal['title']="新增校園映像圖片";
-                return view("modal.image",$modal);
-            break;
-            case "news":
-                $modal['title']="新增最新消息資料";
-                return view("modal.news",$modal);
-            break;
-            case "user":
-                $modal['title']="新增管理者";
-                return view("modal.user",$modal);
-            break;
-            case "menu":
-                $modal['title']="新增主選單";
-                return view("modal.menu",$modal);
-            break;
-        }
+        $modal['title']=$this->str[$table]['new'];
+        return view('modal.'.$table,$modal);
     }
 
     //各功能列表
@@ -306,37 +288,9 @@ class AdminController extends BaseController
         }
     }
 
-    //變數轉Model
+    //字串轉Model
     private function model($table){
-        switch($table){
-            case "title":
-                $model="App\Model\Title";
-            break;
-            case "ad":
-                $model="App\Model\Ad";
-            break;
-            case "mvim":
-                $model="App\Model\Mvim";
-            break;
-            case "image":
-                $model="App\Model\Image";
-            break;
-            case "total":
-                $model="App\Model\Total";
-            break;
-            case "bottom":
-                $model="App\Model\Bottom";
-            break;
-            case "news":
-                $model="App\Model\News";
-            break;
-            case "user":
-                $model="App\Model\User";
-            break;
-            case "menu":
-                $model="App\Model\Menu";
-            break;
-        }
+        $model="App\Model\\" . ucfirst($table);
         return $model;
     }
 
@@ -407,22 +361,18 @@ class AdminController extends BaseController
 
     public function showUpdateModal($table,$id){
             $this->view['id']=$id;
+            $this->view['title']=$this->str[$table]['update-header'];
         switch($table){
             case "title":
-                $this->view['title']="更新標題區圖片";
                 return view('modal.update_title',$this->view);
             break;
             case "mvim":
-                $this->view['title']="更新動畫圖片";
                 return view('modal.update_mvim',$this->view);
             break;
             case "image":
-                $this->view['title']="更新校園映像圖片";
                 return view('modal.update_image',$this->view);
             break;
             case "menu":
-                
-                $this->view['title']="編輯次選單";
                 $this->view['submenu']=Menu::where("parent",$id)->get();
                 $this->view['parent']=$id;
                 return view('modal.submenu',$this->view);

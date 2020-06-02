@@ -22,7 +22,7 @@
 </head>
 <body>
     <div id="app" class="container p-0 my-1 mx-auto border shadow">
-        <header><a href="/" title="" class='d-block w-100'><img src="/img/{{$title->img}}" style="width:100%"></a></header>
+        <header><a href="/" title="{{$title->text}}" class='d-block w-100'><img src="/img/{{$title->img}}" style="width:100%"></a></header>
 
         <main>
             @yield('content')

@@ -13,10 +13,10 @@
         </form>
     </div>
 </div>
-<div class="border my-1" style="height:480px;overflow:auto">
-<div class="border-bottom py-3 text-center font-weight-bolder">{{$header}}</div>
+<div class="border my-1 px-2" style="height:480px;overflow:auto">
+<div class="border-bottom py-2 text-center font-weight-bolder">{{$header}}</div>
 @if($table!='total' && $table!='bottom')
-<button type='button' class="btn btn-primary" id="addRow">{{$new}}</button>
+<button type='button' class="btn btn-primary mt-2" id="addRow">{{$new}}</button>
 @endif
 <table class="table table-bordered mt-2 text-center" data-table="{{ $table }}">
 <tr>
