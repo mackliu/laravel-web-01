@@ -16,10 +16,8 @@ use App\Model\Menu;
 
 class AdminController extends BaseController
 {
-
     /**
      * 設定後台各功能會使用到的字串
-     * 
      */
 
     private $str=[
@@ -74,11 +72,8 @@ class AdminController extends BaseController
         ],
     ];
 
-
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -88,16 +83,10 @@ class AdminController extends BaseController
 
     /**
      * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
     {
-        $this->view['header']=$this->str['title']['header'];
-        $this->view['new']=$this->str['title']['new'];
-        $this->view['table']=$this->str['title']['table'];
-        $this->title();
-        return view('backend.admin_item',$this->view);
+        return redirect('/backend/title');
     }
 
     public function list($item)
@@ -108,7 +97,6 @@ class AdminController extends BaseController
         $this->$item();
         
         return view('backend.admin_item',$this->view);
-
     }
 
     public function delRow(Request $request,$table){
@@ -124,13 +112,8 @@ class AdminController extends BaseController
                 $id=$request->input("id");
                 $title=Title::all();
                 foreach($title as $ti){
-                    if($ti->id==$id){
-                        $ti->sh=1;
-                        $ti->save();
-                    }else{
-                        $ti->sh=0;
-                        $ti->save();
-                    }
+                    $ti->sh=($ti->id==$id)?1:0;
+                    $ti->save();
                 }
             break;
             default:
@@ -140,7 +123,6 @@ class AdminController extends BaseController
                 $row->sh=($row->sh+1)%2;
                 $row->save();
             break;
-
         }
     }
 
@@ -156,7 +138,6 @@ class AdminController extends BaseController
             $row->$col=Hash::make($content);
         }
         $row->save();
-
     }
 
     //新增資料Modal
@@ -252,7 +233,6 @@ class AdminController extends BaseController
                 "<input type='button'   data-id='$row->id' class='del btn btn-danger' value='刪除'>",
             ];
         }
-        
     }
 
     private function total(){
@@ -355,29 +335,19 @@ class AdminController extends BaseController
         }
 
         $row->save();
-        
         return redirect("/backend/$table");
     }
 
     public function showUpdateModal($table,$id){
             $this->view['id']=$id;
             $this->view['title']=$this->str[$table]['update-header'];
-        switch($table){
-            case "title":
-                return view('modal.update_title',$this->view);
-            break;
-            case "mvim":
-                return view('modal.update_mvim',$this->view);
-            break;
-            case "image":
-                return view('modal.update_image',$this->view);
-            break;
-            case "menu":
+            if($table=='menu'){
                 $this->view['submenu']=Menu::where("parent",$id)->get();
                 $this->view['parent']=$id;
                 return view('modal.submenu',$this->view);
-            break;
-        }
+            }else{
+                return view("modal.update_$table",$this->view);
+            }
     }
 
     public function editSubMenu(Request $request){
@@ -406,8 +376,6 @@ class AdminController extends BaseController
                 $row->save();
             }
         }
-        
         return redirect("/backend/menu");
     }
-
 }
