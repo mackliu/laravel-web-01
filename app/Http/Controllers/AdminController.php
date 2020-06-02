@@ -189,12 +189,13 @@ class AdminController extends BaseController
         $rows=Title::all();
         foreach($rows as $row){
             $isShow=$row->sh==1?"顯示":"隱藏";
+            $showButton=$row->sh==1?"btn-primary":"btn-secondary";
             $this->view['list'][]=[
                 "<img src='../img/".$row->img."' style='width:300px;height:30px'>",
                 "<input type='text' value='$row->text' class='text' data-id='$row->id' data-col='text'>",
-                "<input type='button' value='$isShow' class='show'  data-id='$row->id'>",
-                "<input type='button' value='刪除' class='del' data-id='$row->id'>",
-                "<button class='update-img' data-id='$row->id'>更新圖片</button>"
+                "<input type='button' value='$isShow' class='show btn $showButton'  data-id='$row->id'>",
+                "<input type='button' value='刪除' class='del btn btn-danger' data-id='$row->id'>",
+                "<button class='update btn btn-success' data-table='menu' data-id='$row->id'>更新圖片</button>"
             ];
         }
     }
@@ -204,10 +205,11 @@ class AdminController extends BaseController
         $rows=Ad::all();
         foreach($rows as $row){
             $isShow=$row->sh==1?"顯示":"隱藏";
+            $showButton=$row->sh==1?"btn-primary":"btn-secondary";
             $this->view['list'][]=[
                 "<input type='text' class='text' data-id='$row->id' data-col='text' value='$row->text' style='width:100%'>",
-                "<input type='button' class='show' data-id='$row->id' value='$isShow' >",
-                "<input type='button' class='del'  data-id='$row->id' value='刪除'>"
+                "<input type='button' class='show btn $showButton' data-id='$row->id' value='$isShow' >",
+                "<input type='button' class='del btn btn-danger'  data-id='$row->id' value='刪除'>"
             ];
         }
     }
@@ -217,11 +219,12 @@ class AdminController extends BaseController
         $rows=Mvim::all();
         foreach($rows as $row){
             $isShow=$row->sh==1?"顯示":"隱藏";
+            $showButton=$row->sh==1?"btn-primary":"btn-secondary";
             $this->view['list'][]=[
                 "<embed src='../img/".$row->img."' style='width:120px;height:80px'>",
-                "<input type='button' class='show' data-id='$row->id' value='$isShow'>",
-                "<input type='button' class='del'  data-id='$row->id' value='刪除'>",
-                "<button data-id='$row->id'>更新圖片</button>"
+                "<input type='button' class='show btn $showButton' data-id='$row->id' value='$isShow'>",
+                "<input type='button' class='del btn btn-danger'  data-id='$row->id' value='刪除'>",
+                "<button class='update btn btn-success' data-table='mvim' data-id='$row->id'>更新圖片</button>"
             ];
         }
     }
@@ -231,11 +234,12 @@ class AdminController extends BaseController
         $rows=Image::paginate(3);
         foreach($rows as $row){
             $isShow=$row->sh==1?"顯示":"隱藏";
+            $showButton=$row->sh==1?"btn-primary":"btn-secondary";
             $this->view['list'][]=[
                 "<image src='../img/".$row->img."' style='width:100px;height:68px'>",
-                "<input type='button' class='show' data-id='$row->id' value='$isShow'>",
-                "<input type='button' class='del'  data-id='$row->id' value='刪除'>",
-                "<button data-id='$row->id'>更新圖片</button>"
+                "<input type='button' class='show btn $showButton' data-id='$row->id' value='$isShow'>",
+                "<input type='button' class='del btn btn-danger'  data-id='$row->id' value='刪除'>",
+                "<button class='update btn btn-success' data-table='image' data-id='$row->id'>更新圖片</button>"
             ];
         }
         $this->view['page']=$rows;
@@ -246,10 +250,11 @@ class AdminController extends BaseController
         $rows=News::paginate(4);
         foreach($rows as $row){
             $isShow=$row->sh==1?"顯示":"隱藏";
+            $showButton=$row->sh==1?"btn-primary":"btn-secondary";
             $this->view['list'][]=[
                 "<textarea class='text' data-id='$row->id' data-col='text' style='width:95%;height:40px'>$row->text</textarea>",
-                "<input type='button' class='show' data='$row->id' value='$isShow'>",
-                "<input type='button' class='del'  data='$row->id' value='刪除'>",
+                "<input type='button' class='show btn $showButton' data-id='$row->id' value='$isShow'>",
+                "<input type='button' class='del btn btn-danger'  data-id='$row->id' value='刪除'>",
             ];
         }
         $this->view['page']=$rows;
@@ -262,7 +267,7 @@ class AdminController extends BaseController
             $this->view['list'][]=[
                 "<input type='text'     class='text' data-id='$row->id' data-col='name'  value='$row->name'>",
                 "<input type='password' class='text' data-id='$row->id' data-col='password'  value='$row->password'>",
-                "<input type='button'   data-id='$row->id' class='del' value='刪除'>",
+                "<input type='button'   data-id='$row->id' class='del btn btn-danger' value='刪除'>",
             ];
         }
         
@@ -289,13 +294,14 @@ class AdminController extends BaseController
         $rows=Menu::where('parent',0)->get();
         foreach($rows as $row){
             $isShow=$row->sh==1?"顯示":"隱藏";
+            $showButton=$row->sh==1?"btn-primary":"btn-secondary";
             $this->view['list'][]=[
                 "<input type='text' class='text' data-id='$row->id' data-col='text' value='$row->text'>",
                 "<input type='text' class='text' data-id='$row->id' data-col='href' value='$row->href'>",
                 Menu::where('parent',$row->id)->count(),
-                "<input type='button' class='show' data-id='$row->id' value='$isShow'>",
-                "<input type='button' class='del'  data-id='$row->id' value='刪除'>",
-                "<button data-id='$row->id'>編輯次選單</button>",
+                "<input type='button' class='show btn $showButton' data-id='$row->id' value='$isShow'>",
+                "<input type='button' class='del btn btn-danger'  data-id='$row->id' value='刪除'>",
+                "<button class='update btn btn-success' data-table='menu' data-id='$row->id'>編輯次選單</button>",
             ];
         }
     }
@@ -338,7 +344,7 @@ class AdminController extends BaseController
         $model=$this->model($table);
         if($request->file('img')->isValid()){
             $filename=$request->file('img')->getClientOriginalName();
-            $path=$request->img->storeAs('img',$filename,'img');
+            $request->img->storeAs('img',$filename,'img');
         }
         $row=new $model;
         $row->text=$request->input('text');
@@ -348,4 +354,110 @@ class AdminController extends BaseController
         
         return redirect('/backend/title');
     }
+
+    public function saveRow(Request $request,$table){
+        $model=$this->model($table);
+            if($request->hasFile('img') && $request->file('img')->isValid()){
+                $filename=$request->file('img')->getClientOriginalName();
+                $request->img->storeAs('img',$filename,'img');
+            }
+        if(empty($request->input('id'))){
+            //新增
+            $row=new $model;
+
+            switch($table){
+                case "title":
+                    $row->text=$request->input('text');
+                    $row->sh=0;
+                    $row->img=$filename;
+
+                break;
+                case "user":
+                    $row->name=$request->input('name');
+                    $row->password=Hash::make($request->input('password'));
+                break;
+                case "menu":
+                    $row->text=$request->input('text');
+                    $row->href=$request->input('href');
+                    $row->parent=0;
+                    $row->sh=1;
+
+                break;
+                default:
+                    if(!empty($request->input('text'))){
+                        $row->text=$request->input('text');
+                    }
+                    $row->sh=1;
+                    if(isset($filename)){
+                        $row->img=$filename;
+                    }
+                break;
+            }
+
+        }else{
+            //更新
+            $row=$model::find($request->input('id'));
+            $row->img=$filename;
+        }
+
+        $row->save();
+        
+        return redirect("/backend/$table");
+    }
+
+    public function showUpdateModal($table,$id){
+            $this->view['id']=$id;
+        switch($table){
+            case "title":
+                $this->view['title']="更新標題區圖片";
+                return view('modal.update_title',$this->view);
+            break;
+            case "mvim":
+                $this->view['title']="更新動畫圖片";
+                return view('modal.update_mvim',$this->view);
+            break;
+            case "image":
+                $this->view['title']="更新校園映像圖片";
+                return view('modal.update_image',$this->view);
+            break;
+            case "menu":
+                
+                $this->view['title']="編輯次選單";
+                $this->view['submenu']=Menu::where("parent",$id)->get();
+                $this->view['parent']=$id;
+                return view('modal.submenu',$this->view);
+            break;
+        }
+    }
+
+    public function editSubMenu(Request $request){
+        $input=$request->input();
+
+        if(!empty($input['id'])){
+            foreach($input['id'] as $key => $id){
+                $row=Menu::find($id);
+                if(!empty($input['del']) && in_array($id,$input['del'])){
+                    $row->delete();
+                }else{
+                    $row->text=$input['text'][$key];
+                    $row->text=$input['href'][$key];
+                    $row->save();
+                }
+            }
+        }
+
+        if(!empty($input['text-new'])){
+            foreach($input['text-new'] as $key => $text){
+                $row=new Menu;
+                $row->text=$text;
+                $row->href=$input['href-new'][$key];
+                $row->parent=$input['parent'];
+                $row->sh=1;
+                $row->save();
+            }
+        }
+        
+        return redirect("/backend/menu");
+    }
+
 }

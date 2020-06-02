@@ -7,13 +7,8 @@
             <span aria-hidden='true'>&times;</span>
             </button>
         </div>
-        <div class="modal-body">
             @yield('modal')
-        </div>
-        <div class="modal-footer justify-content-center">
-            <button type="button" class="btn btn-primary">新增</button>
-            <button type="button" class="btn btn-warning">重置</button>
-        </div>
+
         </div>
     </div>
 </div>

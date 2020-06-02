@@ -76,6 +76,14 @@ $("#addRow").on("click",function(){
         $("#addModal").modal("show");
     })
 })
+
+$(".update").on("click",function(){
+    let id=$(this).data('id')
+    $.get(`/backend/updateImg/${table}/${id}`,function(modal){
+        $("#modalBox").html(modal)
+        $("#addModal").modal("show");
+    })
+})
 })
 </script>
 

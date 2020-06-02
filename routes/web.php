@@ -27,5 +27,9 @@ Route::post('/backend/show/{item}','AdminController@showRow');
 Route::post('/backend/del/{item}','AdminController@delRow');
 Route::post('/backend/text/{item}','AdminController@updateCol');
 
+Route::get("/backend/updateImg/{table}/{id}","AdminController@showUpdateModal");
+
 //addRow
 Route::post("/backend/addRow/{table}","AdminController@addRow");
+Route::post("/backend/saveRow/{table}","AdminController@saveRow");
+Route::post("/backend/editSubMenu","AdminController@editSubMenu");

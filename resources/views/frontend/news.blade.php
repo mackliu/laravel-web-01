@@ -11,7 +11,7 @@
             <div class="all w-75 position-absolute" style="display:none;top:1 5px;right:5px;border:3px double orange;background:yellow;z-index:99"><pre>{{$n->text}}</pre></div>
         </div>
         @endforeach
-    </div>
+    </div> 
     <div class="d-flex justify-content-center mt-3">
 
     {{$news->links()}}
