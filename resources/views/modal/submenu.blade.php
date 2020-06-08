@@ -38,6 +38,4 @@ $(".more").on("click",function(){
         </tr>`
 $(".table-sm").append(row)
 })
-
-
 </script>
